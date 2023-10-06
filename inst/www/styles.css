@@ -1,0 +1,501 @@
+*{
+	box-sizing: border-box;
+	outline: none;
+}
+
+html {
+	box-sizing: border-box;
+	min-height: 100% !important;
+	height: 100%;
+	/* Fixes page jumping when scroll bar shows/hides
+			https://aykevl.nl/2014/09/fix-jumping-scrollbar
+	*/
+	width: 100vw;
+	overflow: visible; // Important for IntroJS
+
+}
+
+
+body {
+	/* ------SASS------- */
+	/*font-size: $dp-html-font-size;*/
+	font-size:13px;
+	display: block;
+	flex-direction: column;
+	min-height: 100vh;
+
+	margin: 0;
+	padding: 0;
+	/* ------SASS------- */
+	/*font-family: $pd-font-family;
+	color: $dp-text-color;*/
+	/* ------CSS------- */
+	font-family: "roboto", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", arial, sans-serif;
+	color: #4d4d4d;
+	min-height: 100% !important;
+	height: 100%;
+	/* ------SASS------- */
+	/*background-color: $dp-light;*/
+	background-color: #fff;
+	overflow-x: hidden;
+}
+
+.row__outer {
+	display: flex;
+	justify-content: center;
+}
+
+.row__inner {
+	display: flex;
+	/* ------SASS------- */
+	/* @include breakpoint(xxs) {
+		max-width: calc(100vw - 1rem);
+		width:calc(100vw - 1rem);
+	}
+
+	@include breakpoint(md) {
+		max-width: calc(100vw - 2rem);
+		width: calc(100vw - 2rem);
+		// max-width:1816px;
+	}
+	@include breakpoint(xxl) {
+		// max-width: calc(100vw - 8rem);
+		max-width:1816px;
+	}
+
+	@media print{
+		width:100% !important;
+	} */
+
+}
+
+.shell {
+	position: relative;
+	z-index: 1;
+}
+
+.ui-view-wrapper {
+	// So we can use margin to push rows up and down within the main content area
+	display: flex;
+	flex-direction: column;
+	// Make this grow so it pushes the footer to the bottom
+	flex-grow: 1;
+	flex-shrink: 0;
+	padding-bottom: 6rem;
+	background-color: $dp-background;
+
+/* ------SASS------- */
+	/*@include breakpoint(xxs) {
+		padding-bottom: 2rem;
+		min-height: calc(100vh - 26.3rem);
+		}
+	@include breakpoint(xs) {
+		min-height: calc(100vh - 25.3rem);
+	}
+	@include breakpoint(sm) {
+		min-height: calc(100vh - 21.2rem);
+	}
+	@include breakpoint(md) {
+		min-height: calc(100vh - 23.7rem);
+	}
+	@include breakpoint(lg) {
+		padding-bottom: 6rem;
+		min-height: calc(100vh - 22.6rem);
+	}
+
+	@include breakpoint(xxl) {
+		padding-bottom: 2rem;
+		min-height: calc(100vh - 346px);
+	}*/
+}
+
+.row__outer--brand-bar {
+	/* ------SASS------- */
+	/* background: $dp-background;
+	@include breakpoint(xxs){
+		border-bottom: $dp-primary solid 3px;
+	}
+	@include breakpoint(lg){
+		border-bottom: $dp-primary solid 5px;
+	}
+	@media print{
+		border-bottom: $dp-primary solid 3px;
+	}
+	*/
+
+	/* ----CSS---- */
+	background: #F2F2F2;
+
+}
+
+.link--welcome {
+	display: flex;
+	margin: 0.65rem 0;
+	/* ------SASS------- */
+	/*color: $dp-text-color;*/
+	/* ----CSS---- */
+	color: #4D4D4D ;
+	text-decoration: none;
+	align-items: center;
+}
+
+.link--welcome:hover {
+	text-decoration: none;
+}
+
+
+.brand-bar__icon-wrapper {
+	margin: 0 0.75rem 0 0.35rem;
+}
+.welcome__text {
+	font-weight: 400;
+	letter-spacing: 0.03em;
+	user-select: none;
+	/* ------SASS------- */
+	/*@include font-size-default;*/
+}
+
+header{
+	position:relative;
+}
+.row__inner--header-bar {
+	/* ------SASS------- */
+	/*@include breakpoint(xxs){
+		padding: 0.7rem 0;
+		transform: scale(0.8);
+    	transform-origin: 0;
+	}
+	@include breakpoint(xs){
+		transform: scale(1);
+    	transform-origin: 0;
+	}
+	@include breakpoint(md){
+		padding: $dp-profiles--padding 0;
+	}
+	@media print{
+		padding: $dp-profiles--padding 0;
+	} */
+}
+
+.header-bar__logo {
+	display: flex;
+	align-items: stretch;
+}
+
+.header-bar__logo a:hover {
+	text-decoration: none;
+}
+.logo_wrapper {
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	align-items:center;
+	/* ------SASS------- */
+	/* &::after {
+		content: "";
+		position: absolute;
+		background-color: $dp-gray-600;
+		width: 1px;
+		right: 0px;
+	}
+	@include breakpoint(xxs){
+		&::after{
+			height: 100%;
+			top: 0rem;
+		}
+	}
+	@include breakpoint(md){
+		&::after{
+			height: 76%;
+			top: 0.4rem;
+		}
+	}
+	@media print {
+		&::after{
+			height: 53%;
+			top: 1rem;
+		}
+	} */
+}
+/* ------CSS------- */
+.logo_wrapper::after{
+	content: "";
+	position: absolute;
+	background-color: #B2B2B2;
+	width: 1px;
+	right: -8px;
+}
+
+/* custom class for section margins */
+.custom-width {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 70%;  /* adjust as needed */
+}
+
+/* custom class for inner elements */
+.custom-width .inner-element {
+    margin: 10px;  /* adjust as needed */
+}
+
+.logo__image-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-top: 0;
+	text-decoration: none;
+	margin-top: 0;
+	flex-direction: row;
+}
+
+.logo__image {
+	user-select: none;
+	height: 4.3rem;
+	width: 4.3rem;
+	/* ------SASS------- */
+	/*@media print{
+		width:2.5rem;
+		height:2.5rem;
+	}*/
+}
+
+.logo__text-wrapper {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+}
+
+.logo__text--un {
+	display: inline-flex;
+	color: $dp-black;
+	align-items: center;
+	font-weight: 700;
+	text-transform: none;
+	letter-spacing: 0.01rem;
+	user-select: none;
+	padding:0 0 0rem 0.5rem;
+	/* ------SASS------- */
+	/* font-size: px-to-rem(calc($dp-html-font-size) + 11px);*/
+	font-size: 30px; /* According to UN Web Style Guide https://www.un.org/styleguide/  */
+	max-width: 8rem;
+	line-height: 1.7rem;
+	margin: 0;
+	/* ------SASS------- */
+	/*@media print{
+		padding:0 0 0rem 0.5rem;
+		font-size: 1rem;
+		max-width: 5.2rem;
+		line-height: 1rem;
+		margin: 0;
+	}*/
+}
+
+.logo__sub-text-department-wrapper {
+	position: absolute;
+	width: 100%;
+	left:0;
+	height: calc(100% - 1.25rem);
+	vertical-align: middle;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	flex-direction: row;
+	z-index:-1;
+	padding-top:3px;
+	justify-content: center;
+	h3{
+		margin:0;
+		padding:0;
+	}
+}
+.logo__sub-text-wrapper {
+	margin-left: 1rem;
+	@media print{
+		margin-left: 1rem;
+	}
+}
+.logo__sub-text--department {
+	display: inline;
+	color: $dp-text-color;
+	user-select: none;
+	font-weight: 500;
+	align-self: flex-start;
+	font-size: px-to-rem(22px);
+	line-height: 1;
+
+	@media print{
+		font-size: 0.8rem;
+		line-height: 1;
+	}
+}
+.logo__sub-text--department-name {
+	line-height: 1;
+	user-select: none;
+	font-family: "Roboto Condensed", sans-serif;
+	font-weight: 300;
+	margin:3px 0 0.1rem 0;
+	font-size: px-to-rem(20px);
+	@media print{
+		font-size: 0.8rem;
+	}
+	a{
+		color: $dp-text-color;
+		text-decoration: none;
+		&:hover,&:visited{
+		    color: $dp-text-color;
+		}
+	}
+}
+.logo__sub-text--project-name {
+	display: inline;
+	font-weight: 600;
+	color: $dp-text-color;
+	line-height: 1.4;
+	user-select: none;
+	display: inline;
+	font-size: px-to-rem(22px);
+	@media print{
+		display: inline;
+		font-size: px-to-rem(22px);
+	}
+}
+
+.logo__sub-text--division {
+	color: $dp-gray-500;
+	margin: 0.1rem 0;
+	line-height: 1.4;
+	user-select: none;
+	font-size: px-to-rem(12px);
+}
+
+.logo__version {
+	position: relative;
+	top: -1px;
+	padding: 0.15rem 0.5rem;
+	margin: 0 0.2rem;
+	background-color: $dp-salmon;
+	border-radius: $dp-border-radius;
+	user-select: none;
+	font-size: px-to-rem(12px);
+}
+/* --- SASS --- */
+/*path { fill: $dp-black;
+	&:hover{
+		fill: $dp-text-color;
+	}
+}*/
+.icon--brand-bar-home{
+	width: 16px;
+}
+.icon--brand-bar-home path{
+	fill:black;
+}
+.icon--brand-bar-home path:hover{
+	fill: #4d4d4d;
+}
+
+.icon--brand-bar-home {
+	z-index: 2;
+	color: inherit;
+	@include breakpoint(xxs){
+		width: 1rem;
+		height:1rem;
+	}
+	@include breakpoint(md){
+		width: 1.3rem;
+		height:1.3rem;
+	}
+	@media print{
+		width: 1.3rem;
+		height:1.3rem;
+	}
+}
+.un-logo{
+    width:100%;
+    height:100%;
+}
+
+/* ----CSS Compiled Media Queries---- */
+	@media screen and (min-width:0){
+		.row__inner{
+			max-width: calc(100vw - 1rem);
+			width:calc(100vw - 1rem);
+		}
+		.row__outer--brand-bar {
+			border-bottom: #008FD5 solid 3px;
+		}
+		.welcome__text{
+			font-size:12px !important;
+		}
+		row__inner--header-bar{
+			padding: 0.7rem 0;
+			transform: scale(0.8);
+			transform-origin: 0;
+		}
+		.logo_wrapper::after {
+			height: 100%;
+			top: 0rem;
+		}
+	}
+	@media screen and (min-width: 400px){
+		.row__inner--header-bar{
+			transform: scale(1);
+			transform-origin: 0;
+		}
+	}
+	@media screen and (min-width: 768px){
+		.row__inner{
+			max-width: calc(100vw - 2rem);
+		width: calc(100vw - 2rem);
+		}
+		.row__inner--header-bar{
+			padding: 1.25rem 0;
+		}
+		.logo_wrapper::after {
+			height: 76%;
+			top: 0.4rem;
+		}
+	}
+	@media screen and (min-width: 992px){
+		.row__outer--brand-bar {
+			border-bottom: #008FD5 solid 5px;
+		}
+		.welcome__text{
+			font-size:13px !important;
+		}
+	}
+	@media screen and (min-width: 1600px){
+		.row__inner{
+			max-width:1816px;
+		}
+	}
+	@media print{
+		.row__outer--brand-bar{
+			border-bottom: #008FD5 solid 3px;
+		}
+		.welcome__text{
+			font-size: 10pt;
+		}
+		.row__inner--header-bar{
+			padding: 1.25rem 0;
+		}
+		.logo_wrapper::after {
+			height: 53%;
+			top: 1rem;
+		}
+		.logo__image{
+			width:2.5rem;
+			height:2.5rem;
+		}
+		.logo__text--un{
+			padding:0 0 0rem 0.5rem;
+			font-size: 1rem;
+			max-width: 5.2rem;
+			line-height: 1rem;
+			margin: 0;
+		}
+		.logo__sub-text--project-name{
+			display: inline;
+			font-size: 22px;
+		}
+	}
