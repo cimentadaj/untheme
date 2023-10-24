@@ -106,7 +106,7 @@ plotWithDownloadButtonsUI <- function(id, radio_choices = NULL) {
 #' }
 #' }
 #' @seealso \code{\link[shiny]{reactive}}, \code{\link[shiny]{renderPlot}}, \code{\link[shiny]{downloadHandler}}
-plotWithDownloadButtons <- function(input, output, session, data, ggplot_obj, update_ggplot_func = NULL) {
+plotWithDownloadButtons <- function(input, output, session, ggplot_obj, update_ggplot_func = NULL) {
   reactive_ggplot_obj <- shiny::reactive({
     if (is.null(update_ggplot_func)) {
       ggplot_obj
@@ -133,7 +133,7 @@ plotWithDownloadButtons <- function(input, output, session, data, ggplot_obj, up
       paste("data.csv")
     },
     content = function(file) {
-      write.csv(data, file)
+      write.csv(ggplot_obj$data, file)
     }
   )
 }
