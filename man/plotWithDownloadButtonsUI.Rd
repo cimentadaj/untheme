@@ -4,13 +4,12 @@
 \alias{plotWithDownloadButtonsUI}
 \title{Create a UI component with a plot and optional download buttons}
 \usage{
-plotWithDownloadButtonsUI(id, radio_choices = NULL)
+plotWithDownloadButtonsUI(id, radio_button = NULL)
 }
 \arguments{
 \item{id}{A unique identifier for the UI component.}
 
-\item{radio_choices}{A vector of options for the radio buttons. If NULL, no radio
-buttons will be displayed.}
+\item{radio_button}{A radio button widget to be placed in a sidebar panel.}
 }
 \value{
 A \code{shiny::sidebarLayout} object containing the plot and download buttons.

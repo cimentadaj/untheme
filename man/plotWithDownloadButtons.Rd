@@ -8,7 +8,6 @@ plotWithDownloadButtons(
   input,
   output,
   session,
-  data,
   ggplot_obj,
   update_ggplot_func = NULL
 )
@@ -19,8 +18,6 @@ plotWithDownloadButtons(
 \item{output}{A list of output values to be modified by this function.}
 
 \item{session}{The Shiny session object.}
-
-\item{data}{The data to be plotted and downloaded.}
 
 \item{ggplot_obj}{A ggplot object to be rendered.}
 

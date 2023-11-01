@@ -44,8 +44,7 @@ fluidUnTheme <- function(...) {
 #' selecting the scale type.
 #'
 #' @param id A unique identifier for the UI component.
-#' @param radio_choices A vector of options for the radio buttons. If NULL, no radio
-#'   buttons will be displayed.
+#' @param radio_button A radio button widget to be placed in a sidebar panel.
 #'
 #' @return A \code{shiny::sidebarLayout} object containing the plot and download buttons.
 #' @export
@@ -55,31 +54,27 @@ fluidUnTheme <- function(...) {
 #' ui <- plotWithDownloadButtonsUI("plot1", radio_choices = c("Absolute", "Percentage"))
 #' }
 #' @seealso \code{\link[shiny]{NS}}, \code{\link[shiny]{downloadButton}}, \code{\link[shiny]{plotOutput}}
-plotWithDownloadButtonsUI <- function(id, radio_choices = NULL) {
+plotWithDownloadButtonsUI <- function(id, radio_button = NULL) {
   ns <- shiny::NS(id)
-
-  button <- NULL
-
-  if (!is.null(radio_choices)) {
-    button <- shiny.semantic::multiple_radio(ns("scaleType"), "Scale Type", choices = radio_choices, type = "inline")
-  }
 
   layout <-
     shiny.semantic::sidebar_layout(
       shiny.semantic::sidebar_panel(
-        button,
+        radio_button,
         shiny::br(),
         shiny::downloadButton(ns("downloadPlot"), "Download Plot"),
         shiny::downloadButton(ns("downloadData"), "Download Data")
       ),
       shiny.semantic::main_panel(
-        shiny::plotOutput(ns("plot"), height = "600px", width = "900px"),
+        plotly::plotlyOutput(ns("plot"), height = "600px", width = "1000px"),
         width = 4
       )
     )
 
   layout
 }
+
+
 
 #' Create a server component for rendering and downloading a plot
 #'
@@ -89,7 +84,6 @@ plotWithDownloadButtonsUI <- function(id, radio_choices = NULL) {
 #' @param input A list of input values from the Shiny UI.
 #' @param output A list of output values to be modified by this function.
 #' @param session The Shiny session object.
-#' @param data The data to be plotted and downloaded.
 #' @param ggplot_obj A ggplot object to be rendered.
 #' @param update_ggplot_func An optional function for updating the ggplot object
 #'   based on user input.
@@ -115,7 +109,7 @@ plotWithDownloadButtons <- function(input, output, session, ggplot_obj, update_g
     }
   })
 
-  output$plot <- shiny::renderPlot({
+  output$plot <- plotly::renderPlotly({
     print(reactive_ggplot_obj())
   })
 
@@ -124,7 +118,7 @@ plotWithDownloadButtons <- function(input, output, session, ggplot_obj, update_g
       paste("plot.png")
     },
     content = function(file) {
-      ggplot2::ggsave(file, plot = reactive_ggplot_obj())
+      ggplot2::ggsave(file, plot = reactive_ggplot_obj(), bg = "white")
     }
   )
 
