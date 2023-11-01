@@ -19,7 +19,7 @@ plotWithDownloadButtons(
 
 \item{session}{The Shiny session object.}
 
-\item{ggplot_obj}{A ggplot object to be rendered.}
+\item{ggplot_obj}{A reactive expression returning a list with a named ggplot object (gg) and a named plotly plot (plotly).}
 
 \item{update_ggplot_func}{An optional function for updating the ggplot object
 based on user input.}

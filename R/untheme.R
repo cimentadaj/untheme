@@ -39,7 +39,7 @@ fluidUnTheme <- function(...) {
 
 #' Create a UI component with a plot and optional download buttons
 #'
-#' This function creates a Shiny UI component that includes a plot, a download button
+#' This function creates a Shiny UI component that includes a plot from Plotly, a download button
 #' for the plot, and optionally, a download button for the data and radio buttons for
 #' selecting the scale type.
 #'
@@ -84,7 +84,7 @@ plotWithDownloadButtonsUI <- function(id, radio_button = NULL) {
 #' @param input A list of input values from the Shiny UI.
 #' @param output A list of output values to be modified by this function.
 #' @param session The Shiny session object.
-#' @param ggplot_obj A ggplot object to be rendered.
+#' @param ggplot_obj A reactive expression returning a list with a named ggplot object (gg) and a named plotly plot (plotly).
 #' @param update_ggplot_func An optional function for updating the ggplot object
 #'   based on user input.
 #'
@@ -110,7 +110,7 @@ plotWithDownloadButtons <- function(input, output, session, ggplot_obj, update_g
   })
 
   output$plot <- plotly::renderPlotly({
-    print(reactive_ggplot_obj())
+    reactive_ggplot_obj()$plotly
   })
 
   output$downloadPlot <- shiny::downloadHandler(
@@ -118,7 +118,7 @@ plotWithDownloadButtons <- function(input, output, session, ggplot_obj, update_g
       paste("plot.png")
     },
     content = function(file) {
-      ggplot2::ggsave(file, plot = reactive_ggplot_obj(), bg = "white")
+      ggplot2::ggsave(file, plot = reactive_ggplot_obj()$gg, bg = "white")
     }
   )
 
@@ -127,7 +127,7 @@ plotWithDownloadButtons <- function(input, output, session, ggplot_obj, update_g
       paste("data.csv")
     },
     content = function(file) {
-      write.csv(ggplot_obj$data, file)
+      write.csv(reactive_ggplot_obj()$gg$data, file)
     }
   )
 }
