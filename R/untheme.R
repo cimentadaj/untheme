@@ -1,3 +1,91 @@
+#' Create a field set with a given icon, label, and selectInput
+#'
+#' This function creates a field set for the Shiny application, consisting of an icon, a label, and a select or numeric input.
+#' The function allows for easy generation of a consistent UI element for different types of inputs.
+#'
+#' @param icon_name Name of the icon used next to the label.
+#' @param label_text Text for the label describing the input field.
+#' @param input_id ID for the select or numeric input, used for input retrieval in server logic.
+#' @param input_choices Choices for the select input (ignored if numeric_input is TRUE).
+#' @param input_selected Default selected choice for the select input or default value for the numeric input.
+#' @param numeric_input Logical indicating whether to use a numeric input instead of a select input (default is FALSE).
+#' @importFrom shiny.semantic icon label selectInput numeric_input
+#' @export
+create_field_set <- function(icon_name, label_text, input_id, input_choices, input_selected, numeric_input = FALSE) {
+  if (numeric_input) {
+    input_widget <-
+      numeric_input(
+        input_id,
+        NULL,
+        value = input_selected
+      )
+  } else {
+    input_widget <-
+      selectInput(
+        input_id,
+        NULL,
+        choices = input_choices,
+        selected = input_selected
+      )
+  }
+
+  div(
+    class = "field",
+    icon(icon_name),
+    label(
+      class = "main label",
+      label_text
+    ),
+    input_widget
+  )
+}
+
+
+#' Generate a Tab UI Component for the Application
+#'
+#' This function generates a tab UI component for Shiny applications. It is designed to encapsulate a plot with optional additional UI elements in a tabbed interface.
+#'
+#' @param tab_name The name displayed on the tab, defining its identity and purpose.
+#' @param plot_ui_id The UI id for the plot, used for rendering the plot in the server logic.
+#' @param extra_ui An optional UI component (such as additional inputs or text) to be included in the tab.
+#' @importFrom shiny div
+#' @return A list representing a tab UI component suitable for integration into a tabset panel.
+#' @export
+create_tab <- function(tab_name, plot_ui_id, extra_ui = NULL) {
+  list(
+    menu = tab_name,
+    content = plotWithDownloadButtonsUI(plot_ui_id, extra_ui),
+    id = paste0(tolower(gsub(" ", "_", tab_name)), "_tab")
+  )
+}
+
+#' Generate the plot modules for an arbitrary number of plots.
+#'
+#' This function facilitates the generation of multiple plot modules in a Shiny application, particularly following a simulation or data analysis process.
+#' It accepts a variable number of reactive expressions, each returning a ggplot2 object, and renders these plots within the application.
+#'
+#' @param ... A variable number of reactive expressions, each returning a ggplot2 object for rendering.
+#' @importFrom shiny callModule observe
+#' @export
+plots_tabset <- function(...) {
+  observe({
+    args <- list(...)
+    tab_counter <- 0
+
+    lapply(args, function(arg_reactive) {
+      tab_counter <<- tab_counter + 1
+      plot_data <- arg_reactive()
+
+      callModule(
+        plotWithDownloadButtons,
+        paste0("plot", tab_counter),
+        ggplot_obj = plot_data
+      )
+    })
+  })
+}
+
+
 ##' Create a customized Shiny UI with additional CSS and HTML
 #'
 #' This function extends a Shiny UI by adding custom CSS and HTML from the
