@@ -13,4 +13,5 @@ Imports:
     ggplot2,
     shiny,
     shiny.semantic,
-    plotly
+    plotly,
+    shinycssloaders

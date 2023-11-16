@@ -154,7 +154,9 @@ plotWithDownloadButtonsUI <- function(id, radio_button = NULL) {
         shiny::downloadButton(ns("downloadData"), "Download Data")
       ),
       shiny.semantic::main_panel(
-        plotly::plotlyOutput(ns("plot"), height = "600px", width = "1000px"),
+        shinycssloaders::withSpinner(
+          plotly::plotlyOutput(ns("plot"), height = "600px", width = "1000px")
+        ),
         width = 4
       )
     )
