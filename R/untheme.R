@@ -72,14 +72,15 @@ plots_tabset <- function(...) {
     args <- list(...)
     tab_counter <- 0
 
-    lapply(args, function(arg_reactive) {
+    lapply(args, function(arg_list) {
       tab_counter <<- tab_counter + 1
-      plot_data <- arg_reactive()
+      plot_data <- arg_list$plt_reactive()
 
       callModule(
         plotWithDownloadButtons,
         paste0("plot", tab_counter),
-        ggplot_obj = plot_data
+        ggplot_obj = plot_data,
+        file_name = arg_list$filename
       )
     })
   })
@@ -209,7 +210,7 @@ plotWithDownloadButtons <- function(input, output, session, ggplot_obj, file_nam
 
   output$downloadData <- shiny::downloadHandler(
     filename = function() {
-      paste0(file_name, "_data.png")
+      paste0(file_name, "_data.csv")
     },
     content = function(file) {
       write.csv(reactive_ggplot_obj()$gg$data, file)
