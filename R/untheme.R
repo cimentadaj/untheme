@@ -175,6 +175,7 @@ plotWithDownloadButtonsUI <- function(id, radio_button = NULL) {
 #' @param output A list of output values to be modified by this function.
 #' @param session The Shiny session object.
 #' @param ggplot_obj A reactive expression returning a list with a named ggplot object (gg) and a named plotly plot (plotly).
+#' @param file_name The file name to use for the plot download and the data.
 #' @param update_ggplot_func An optional function for updating the ggplot object
 #'   based on user input.
 #'
@@ -183,14 +184,8 @@ plotWithDownloadButtonsUI <- function(id, radio_button = NULL) {
 #' @return None. This function modifies the \code{output} list in-place.
 #' @export
 #'
-#' @examples
-#' \dontrun{
-#' server <- function(input, output, session) {
-#'   plotWithDownloadButtons(input, output, session, data, ggplot_obj)
-#' }
-#' }
 #' @seealso \code{\link[shiny]{reactive}}, \code{\link[shiny]{renderPlot}}, \code{\link[shiny]{downloadHandler}}
-plotWithDownloadButtons <- function(input, output, session, ggplot_obj, update_ggplot_func = NULL) {
+plotWithDownloadButtons <- function(input, output, session, ggplot_obj, file_name, update_ggplot_func = NULL) {
   reactive_ggplot_obj <- shiny::reactive({
     if (is.null(update_ggplot_func)) {
       ggplot_obj
@@ -205,7 +200,7 @@ plotWithDownloadButtons <- function(input, output, session, ggplot_obj, update_g
 
   output$downloadPlot <- shiny::downloadHandler(
     filename = function() {
-      paste("plot.png")
+      paste0(file_name, "_plot.png")
     },
     content = function(file) {
       ggplot2::ggsave(file, plot = reactive_ggplot_obj()$gg, bg = "white")
@@ -214,7 +209,7 @@ plotWithDownloadButtons <- function(input, output, session, ggplot_obj, update_g
 
   output$downloadData <- shiny::downloadHandler(
     filename = function() {
-      paste("data.csv")
+      paste0(file_name, "_data.png")
     },
     content = function(file) {
       write.csv(reactive_ggplot_obj()$gg$data, file)
