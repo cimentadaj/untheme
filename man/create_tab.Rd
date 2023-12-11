@@ -4,7 +4,7 @@
 \alias{create_tab}
 \title{Generate a Tab UI Component for the Application}
 \usage{
-create_tab(tab_name, plot_ui_id, extra_ui = NULL)
+create_tab(tab_name, plot_ui_id, extra_ui = NULL, width = "1000px")
 }
 \arguments{
 \item{tab_name}{The name displayed on the tab, defining its identity and purpose.}
@@ -12,6 +12,8 @@ create_tab(tab_name, plot_ui_id, extra_ui = NULL)
 \item{plot_ui_id}{The UI id for the plot, used for rendering the plot in the server logic.}
 
 \item{extra_ui}{An optional UI component (such as additional inputs or text) to be included in the tab.}
+
+\item{width}{The width of the plotly output. By default, it is 1000px}
 }
 \value{
 A list representing a tab UI component suitable for integration into a tabset panel.

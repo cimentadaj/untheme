@@ -4,12 +4,14 @@
 \alias{plotWithDownloadButtonsUI}
 \title{Create a UI component with a plot and optional download buttons}
 \usage{
-plotWithDownloadButtonsUI(id, radio_button = NULL)
+plotWithDownloadButtonsUI(id, radio_button = NULL, width = "1000px")
 }
 \arguments{
 \item{id}{A unique identifier for the UI component.}
 
 \item{radio_button}{A radio button widget to be placed in a sidebar panel.}
+
+\item{width}{The width of the plotly output. By default, it is 1000px}
 }
 \value{
 A \code{shiny::sidebarLayout} object containing the plot and download buttons.

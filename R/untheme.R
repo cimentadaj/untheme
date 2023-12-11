@@ -48,13 +48,14 @@ create_field_set <- function(icon_name, label_text, input_id, input_choices, inp
 #' @param tab_name The name displayed on the tab, defining its identity and purpose.
 #' @param plot_ui_id The UI id for the plot, used for rendering the plot in the server logic.
 #' @param extra_ui An optional UI component (such as additional inputs or text) to be included in the tab.
+#' @param width The width of the plotly output. By default, it is 1000px
 #' @importFrom shiny div
 #' @return A list representing a tab UI component suitable for integration into a tabset panel.
 #' @export
-create_tab <- function(tab_name, plot_ui_id, extra_ui = NULL) {
+create_tab <- function(tab_name, plot_ui_id, extra_ui = NULL, width = "1000px") {
   list(
     menu = tab_name,
-    content = plotWithDownloadButtonsUI(plot_ui_id, extra_ui),
+    content = plotWithDownloadButtonsUI(plot_ui_id, extra_ui, width = width),
     id = paste0(tolower(gsub(" ", "_", tab_name)), "_tab")
   )
 }
@@ -134,6 +135,7 @@ fluidUnTheme <- function(...) {
 #'
 #' @param id A unique identifier for the UI component.
 #' @param radio_button A radio button widget to be placed in a sidebar panel.
+#' @param width The width of the plotly output. By default, it is 1000px
 #'
 #' @return A \code{shiny::sidebarLayout} object containing the plot and download buttons.
 #' @export
@@ -143,7 +145,7 @@ fluidUnTheme <- function(...) {
 #' ui <- plotWithDownloadButtonsUI("plot1", radio_choices = c("Absolute", "Percentage"))
 #' }
 #' @seealso \code{\link[shiny]{NS}}, \code{\link[shiny]{downloadButton}}, \code{\link[shiny]{plotOutput}}
-plotWithDownloadButtonsUI <- function(id, radio_button = NULL) {
+plotWithDownloadButtonsUI <- function(id, radio_button = NULL, width = "1000px") {
   ns <- shiny::NS(id)
 
   layout <-
@@ -156,7 +158,7 @@ plotWithDownloadButtonsUI <- function(id, radio_button = NULL) {
       ),
       shiny.semantic::main_panel(
         shinycssloaders::withSpinner(
-          plotly::plotlyOutput(ns("plot"), height = "600px", width = "1000px")
+          plotly::plotlyOutput(ns("plot"), height = "600px", width = width)
         ),
         width = 4
       )
