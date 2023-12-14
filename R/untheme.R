@@ -115,17 +115,23 @@ plots_tabset <- function(...) {
 fluidUnTheme <- function(...) {
   # Add custom CSS and HTML from inst/www/
   shiny::addResourcePath("custom-css", system.file("www", package = "untheme"))
-  header_html <- shiny::includeHTML(system.file("www/index.html", package = "untheme"))
+  header_html <- shiny::includeHTML(system.file("www/header.html", package = "untheme"))
+  footer_html <- shiny::includeHTML(system.file("www/footer.html", package = "untheme"))
 
   shiny.semantic::semanticPage(
     margin = "0px",
     shiny::tags$head(
-      shiny::tags$link(rel = "stylesheet", type = "text/css", href = "custom-css/styles.css")
+      shiny::tags$link(rel = "stylesheet", type = "text/css", href = "custom-css/header_styles.css")
+    ),
+    shiny::tags$head(
+      shiny::tags$link(rel = "stylesheet", type = "text/css", href = "custom-css/footer_styles.css")
     ),
     header_html,
-    shiny::div(class = "custom-width", ...)
+    shiny::div(class = "custom-width", ...),
+    footer_html
   )
 }
+
 
 #' Create a UI component with a plot and optional download buttons
 #'

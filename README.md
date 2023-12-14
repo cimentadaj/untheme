@@ -25,6 +25,7 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(untheme)
 library(shiny)
+library(shiny.semantic)
 library(ggplot2)
 
 ui <- fluidUnTheme(
