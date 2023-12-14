@@ -4,17 +4,8 @@ README: README.Rmd
 	R -e "devtools::build_readme()"
 
 run_app:
-	Rscript -e "library(untheme); library(shiny); library(shiny.semantic); library(ggplot2); \
+	Rscript -e "devtools::load_all(); library(untheme); library(shiny); library(shiny.semantic); library(ggplot2); \
 	ui <- fluidUnTheme( \
-	  tabset( \
-	    tabs = list( \
-	      list( \
-	        menu = 'Tab 1', \
-	        content = plotWithDownloadButtonsUI('plot1'), \
-	        id = 'first_tab' \
-	      ) \
-	    ) \
-	  ) \
 	); \
 	server <- function(input, output, session) { \
 	  data <- mtcars; \
