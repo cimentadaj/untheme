@@ -127,8 +127,8 @@ fluidUnTheme <- function(...) {
       shiny::tags$link(rel = "stylesheet", type = "text/css", href = "custom-css/footer_styles.css")
     ),
     header_html,
-    shiny::div(class = "custom-width", ...),
-    footer_html
+    shiny::div(class = "custom-width", ...)
+    ## footer_html
   )
 }
 
