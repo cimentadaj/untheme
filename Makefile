@@ -6,6 +6,7 @@ README: README.Rmd
 run_app:
 	Rscript -e "devtools::load_all(); library(untheme); library(shiny); library(shiny.semantic); library(ggplot2); \
 	ui <- fluidUnTheme( \
+    plotOutput('bigPlot', height = '600px') \
 	); \
 	server <- function(input, output, session) { \
 	  data <- mtcars; \

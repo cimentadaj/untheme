@@ -17,7 +17,7 @@ html {
 
 
 body {
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/*font-size: $dp-html-font-size;*/
 	font-size:13px;
 	display: block;
@@ -26,19 +26,20 @@ body {
 
 	margin: 0;
 	padding: 0;
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/*font-family: $pd-font-family;
 	color: $dp-text-color;*/
-	/* ------CSS------- */ 
+	/* ------CSS------- */
 	font-family: "roboto", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", arial, sans-serif;
 	color: #4d4d4d;
 	min-height: 100% !important;
 	height: 100%;
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/*background-color: $dp-light;*/
 	background-color: #fff;
 	overflow-x: hidden;
 }
+
 .row__outer {
 	display: flex;
 	justify-content: center;
@@ -46,7 +47,7 @@ body {
 
 .row__inner {
 	display: flex;
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/* @include breakpoint(xxs) {
 		max-width: calc(100vw - 1rem);
 		width:calc(100vw - 1rem);
@@ -79,12 +80,12 @@ body {
 	flex-grow: 1;
 	flex-shrink: 0;
 	padding-bottom: 6rem;
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/*background-color: $dp-background;*/
-	/* ------CSS------- */ 
+	/* ------CSS------- */
 	background-color: #F2F2F2;
 
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/*@include breakpoint(xxs) {
 		padding-bottom: 2rem;
 		min-height: calc(100vh - 26.3rem);
@@ -110,17 +111,20 @@ body {
 }
 
 .row__outer--footer-bar {
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/* background-color: $dp-background-footer; */
-	/* ------CSS------- */ 
+	/* ------CSS------- */
 	background-color: #333333;
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/*border-top: 0.4rem solid $dp-primary;*/
-	/* ------CSS------- */ 
+	/* ------CSS------- */
 	border-top: 0.4rem solid #008FD5;
+
+  /* This is the argument that allows the footer to be % below the content of the website */
+  margin-top: 4%;
 	padding:20px;
 	flex-direction: column;
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/*@include breakpoint(xxs){
 		padding:0 0.5rem 0rem 0.5rem;
 	}
@@ -128,7 +132,7 @@ body {
 		padding:0 1rem;
 		margin-bottom:0;
 	} */
-	/* ------CSS------- */ 
+	/* ------CSS------- */
 	@media print{
 		padding:0 1rem;
 	}
@@ -137,7 +141,7 @@ body {
 
 .row__inner--footer-bar {
 	width:100%;
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/*@include breakpoint(xxs){
 		display: flex;
 		margin: 1rem auto;
@@ -192,11 +196,11 @@ div.row__inner--footer-bar{
 	margin: 0 0 0 0.5rem;
 	font-weight: 700;
 	text-transform: none;
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/* color: $dp-light; */
 	color: #ffffff;
 	user-select: none;
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/*@include breakpoint(xxs){
 		font-size: 12px;
 		line-height: 0.95rem;
@@ -221,7 +225,7 @@ div.row__inner--footer-bar{
 
 .footer-bar__logo-image {
 	user-select: none;
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/*@include breakpoint(xxs){
 		width: 30px;
 		height: 30px;
@@ -238,7 +242,7 @@ div.row__inner--footer-bar{
 	display:flex;
 	align-items: stretch;
 	border-right: 1px solid #c4c4c4;
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/*@include breakpoint(xxs){
 		flex-wrap: wrap;
 	}
@@ -250,7 +254,7 @@ div.row__inner--footer-bar{
 	display: flex;
 	align-items: center;
 	position: relative;
-	/* ------SASS------- */ 
+	/* ------SASS------- */
 	/*@include breakpoint(xxs){
 		font-size: 0.8rem;
 		margin: 0 0.9rem;
@@ -536,4 +540,3 @@ svg path{
 		min-height: calc(100vh - 346px);
 	}
 }
-
