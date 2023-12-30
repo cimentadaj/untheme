@@ -121,14 +121,16 @@ fluidUnTheme <- function(...) {
   shiny.semantic::semanticPage(
     margin = "0px",
     shiny::tags$head(
-      shiny::tags$link(rel = "stylesheet", type = "text/css", href = "custom-css/header_styles.css")
-    ),
-    shiny::tags$head(
-      shiny::tags$link(rel = "stylesheet", type = "text/css", href = "custom-css/footer_styles.css")
+      shiny::tags$link(rel = "stylesheet", type = "text/css", href = "custom-css/header_styles.css"),
+      shiny::tags$link(rel = "stylesheet", type = "text/css", href = "custom-css/footer_styles.css"),
+      shiny::tags$link(rel = "stylesheet", type = "text/css", href = "custom-css/layout_styles.css") # Link the new stylesheet
     ),
     header_html,
-    shiny::div(class = "custom-width", ...),
-    footer_html
+    shiny::div(
+      class = "main-container",
+      shiny::div(class = "content", ...),
+      footer_html
+    )
   )
 }
 
