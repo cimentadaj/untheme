@@ -117,6 +117,7 @@ plotWithDownloadButtonsUI <- function(id, radio_button = NULL, width = "100%") {
     sidebar = shiny::div(
       class = "custom-sidebar",
       style = "overflow-x: auto;",
+      br(),
       radio_button,
       shiny::br(),
       shiny::downloadButton(ids$download_plot_id, "Download Plot"),
