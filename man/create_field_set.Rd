@@ -27,6 +27,5 @@ create_field_set(
 \item{numeric_input}{Logical indicating whether to use a numeric input instead of a select input (default is FALSE).}
 }
 \description{
-This function creates a field set for the Shiny application, consisting of an icon, a label, and a select or numeric input.
-The function allows for easy generation of a consistent UI element for different types of inputs.
+Create a field set with a given icon, label, and selectInput
 }

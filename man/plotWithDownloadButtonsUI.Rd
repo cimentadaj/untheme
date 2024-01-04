@@ -17,15 +17,5 @@ plotWithDownloadButtonsUI(id, radio_button = NULL, width = "1000px")
 A \code{shiny::sidebarLayout} object containing the plot and download buttons.
 }
 \description{
-This function creates a Shiny UI component that includes a plot from Plotly, a download button
-for the plot, and optionally, a download button for the data and radio buttons for
-selecting the scale type.
-}
-\examples{
-\dontrun{
-ui <- plotWithDownloadButtonsUI("plot1", radio_choices = c("Absolute", "Percentage"))
-}
-}
-\seealso{
-\code{\link[shiny]{NS}}, \code{\link[shiny]{downloadButton}}, \code{\link[shiny]{plotOutput}}
+Create a UI component with a plot and optional download buttons
 }

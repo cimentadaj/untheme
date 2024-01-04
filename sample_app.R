@@ -1,20 +1,23 @@
-library(untheme)
+devtools::load_all()
 library(shiny)
 library(shiny.semantic)
 library(ggplot2)
 library(plotly)
 
 ui <- fluidUnTheme(
-  tabset(
-    tabs = list(
-      create_tab("Tab 1", "plot1"),
-      create_tab("Tab 2", "plot2"),
-      create_tab("Tab 3", "plot3")
-    )
-  )
+  selectInput("select_id", "Choose a plot:", choices = c("Tab 1", "Tab 2", "Tab 3")),
+  uiOutput("current_tab")
 )
 
 server <- function(input, output, session) {
+  output$current_tab <- renderUI({
+    switch(input$select_id,
+      "Tab 1" = plotWithDownloadButtonsUI("Tab 1"),
+      "Tab 2" = plotWithDownloadButtonsUI("Tab 2"),
+      "Tab 3" = plotWithDownloadButtonsUI("Tab 3"),
+    )
+  })
+
   data <- mtcars
   ggplot_obj1 <- reactive({
     gg <- ggplot(data, aes(x = mpg, y = wt)) + geom_point()
@@ -31,11 +34,27 @@ server <- function(input, output, session) {
     list(gg = gg, plotly = ggplotly(gg))
   })
 
-  plots_tabset(
-    list(plt_reactive = ggplot_obj1, filename = "plot1"),
-    list(plt_reactive = ggplot_obj2, filename = "plot2"),
-    list(plt_reactive = ggplot_obj3, filename = "plot3")
-  )
+
+  chosen_plt <-
+    reactive({
+      switch(
+        input$select_id,
+        "Tab 1" = list(plt_reactive = ggplot_obj1, filename = "plot1"),
+        "Tab 2" = list(plt_reactive = ggplot_obj2, filename = "plot2"),
+        "Tab 3" = list(plt_reactive = ggplot_obj3, filename = "plot3"),
+      )
+    })
+
+  observe({
+    input$select_id
+    plots_tabset(
+      input,
+      output,
+      input$select_id,
+      chosen_plt()
+    )
+  })
+
 }
 
 shinyApp(ui, server)

@@ -7,7 +7,7 @@
 plotWithDownloadButtons(
   input,
   output,
-  session,
+  ids,
   ggplot_obj,
   file_name,
   update_ggplot_func = NULL
@@ -18,22 +18,14 @@ plotWithDownloadButtons(
 
 \item{output}{A list of output values to be modified by this function.}
 
-\item{session}{The Shiny session object.}
+\item{ids}{A list of IDs generated for the plot and download buttons.}
 
-\item{ggplot_obj}{A reactive expression returning a list with a named ggplot object (gg) and a named plotly plot (plotly).}
+\item{ggplot_obj}{A reactive expression returning a list with a named ggplot object and a named plotly plot.}
 
 \item{file_name}{The file name to use for the plot download and the data.}
 
-\item{update_ggplot_func}{An optional function for updating the ggplot object
-based on user input.}
-}
-\value{
-None. This function modifies the \code{output} list in-place.
+\item{update_ggplot_func}{An optional function for updating the ggplot object based on user input.}
 }
 \description{
-This function creates a Shiny server component for rendering a ggplot object
-and providing download buttons for the plot and data.
-}
-\seealso{
-\code{\link[shiny]{reactive}}, \code{\link[shiny]{renderPlot}}, \code{\link[shiny]{downloadHandler}}
+Create a server component for rendering and downloading a plot
 }

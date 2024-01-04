@@ -13,23 +13,5 @@ fluidUnTheme(...)
 A \code{shiny.semantic::semanticPage} object with custom styling.
 }
 \description{
-This function extends a Shiny UI by adding custom CSS and HTML from the
-\code{inst/www/} directory of the \code{untheme} package.
-}
-\examples{
-\dontrun{
-ui <- fluidUnTheme(
-  tabset(
-    tabs = list(
-      list(
-        menu = "Tab 1",
-        content = plotWithDownloadButtonsUI("plot1"),
-        id = "first_tab"
-      )
-    )
-  )
-}
-}
-\seealso{
-\code{\link[shiny]{addResourcePath}}, \code{\link[shiny]{includeHTML}}
+Create a customized Shiny UI with additional CSS and HTML
 }

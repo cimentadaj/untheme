@@ -4,12 +4,17 @@
 \alias{plots_tabset}
 \title{Generate the plot modules for an arbitrary number of plots.}
 \usage{
-plots_tabset(...)
+plots_tabset(input, output, id, plot_object)
 }
 \arguments{
-\item{...}{A variable number of reactive expressions, each returning a ggplot2 object for rendering.}
+\item{input}{Shiny input object.}
+
+\item{output}{Shiny output object.}
+
+\item{id}{Unique identifier for the plot module.}
+
+\item{plot_object}{An object containing a reactive expression for the plot and its filename.}
 }
 \description{
-This function facilitates the generation of multiple plot modules in a Shiny application, particularly following a simulation or data analysis process.
-It accepts a variable number of reactive expressions, each returning a ggplot2 object, and renders these plots within the application.
+Generate the plot modules for an arbitrary number of plots.
 }

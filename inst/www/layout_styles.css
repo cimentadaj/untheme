@@ -1,3 +1,4 @@
+/* Existing styles */
 .main-container {
     display: flex;
     flex-direction: column;
@@ -6,8 +7,9 @@
 
 .content {
     flex-grow: 1;
-    max-width: 70%;
     margin: auto;
+    min-height: 64%;
+    max-width: 70%;
     padding: 20px;
 }
 
@@ -15,6 +17,13 @@
     background-color: #333333;
     border-top: 0.4rem solid #008FD5;
     padding: 20px;
-    flex-shrink: 0; /* Do not allow the footer to grow */
-    /* Remove margin-top as it's no longer needed */
+    flex-shrink: 0; /* Keep footer at the bottom */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .content {
+        max-width: 100%; /* Adjust for smaller screens */
+        min-height: auto; /* Adjust for content and screen size */
+    }
 }
