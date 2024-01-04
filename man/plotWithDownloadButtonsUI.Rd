@@ -4,7 +4,7 @@
 \alias{plotWithDownloadButtonsUI}
 \title{Create a UI component with a plot and optional download buttons}
 \usage{
-plotWithDownloadButtonsUI(id, radio_button = NULL, width = "1000px")
+plotWithDownloadButtonsUI(id, radio_button = NULL, width = "100\%")
 }
 \arguments{
 \item{id}{A unique identifier for the UI component.}

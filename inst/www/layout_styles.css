@@ -10,6 +10,7 @@
     margin: auto;
     min-height: 64%;
     max-width: 70%;
+    min-width: 70%;
     padding: 20px;
 }
 
@@ -18,12 +19,4 @@
     border-top: 0.4rem solid #008FD5;
     padding: 20px;
     flex-shrink: 0; /* Keep footer at the bottom */
-}
-
-/* Responsive design adjustments */
-@media (max-width: 768px) {
-    .content {
-        max-width: 100%; /* Adjust for smaller screens */
-        min-height: auto; /* Adjust for content and screen size */
-    }
 }
