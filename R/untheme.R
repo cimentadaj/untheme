@@ -83,49 +83,27 @@ fluidUnTheme <- function(...) {
 plotWithDownloadButtonsUI <- function(id, radio_button = NULL, width = "100%") {
   ids <- generate_ids(id)
 
-  # Define the responsive grid template
-  responsiveGrid <- custom_grid_template(
-    default = list(
-      areas = rbind(
-        c("sidebar", "main")
+  layout <- custom_sidebar_layout(
+    list(
+      children = shiny::div(
+        class = "custom-sidebar",
+        radio_button,
+        shiny::div( # Wrap the buttons in a div with display block to stack them
+          style = "display: block;",
+          shiny::downloadButton(ids$download_plot_id, "Download Plot"),
+          shiny::br(), # Add a break line to ensure the buttons stack
+          shiny::downloadButton(ids$download_data_id, "Download Data")
+        )
       ),
-      rows_height = c("auto"),
-      cols_width = c("1fr", "4fr")
+      width = "1"
     ),
-    mobile = list(
-      areas = rbind(
-        c("sidebar"),
-        c("main")
+    list(
+      children = shiny::div(
+        class = "custom-main-panel",
+        style = "width: 4fr;",
+        shinycssloaders::withSpinner(plotly::plotlyOutput(ids$plot_id, height = "600px", width = width))
       ),
-      rows_height = c("min-content", "auto"),
-      cols_width = c("1fr")
-    )
-  )
-
-  container_style <- "height: 100%; margin: 0; padding: 0; border: 1px solid #dcdcdc; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); box-sizing: border-box;"
-  sidebar_style <- "background-color: #f5f5f5; border: 1px solid #dcdcdc; box-sizing: border-box; max-width: 100%;"
-  main_style <- "padding: 20px; box-sizing: border-box; max-width: 100%;"
-
-  # Create the grid layout with additional styles for the sidebar
-  layout <- shiny.semantic::grid(
-    responsiveGrid,
-    container_style = container_style,
-    area_styles = list(
-      sidebar = sidebar_style,
-      main = main_style
-    ),
-    sidebar = shiny::div(
-      class = "custom-sidebar",
-      style = "overflow-x: auto;",
-      br(),
-      radio_button,
-      shiny::br(),
-      shiny::downloadButton(ids$download_plot_id, "Download Plot"),
-      shiny::downloadButton(ids$download_data_id, "Download Data")
-    ),
-    main = shiny::div(
-      class = "custom-main-panel",
-      shinycssloaders::withSpinner(plotly::plotlyOutput(ids$plot_id, height = "600px", width = "100%"))
+      width = "4"
     )
   )
 
@@ -182,56 +160,4 @@ generate_ids <- function(id) {
   download_data_id <- paste0("downloaddata_", id)
 
   list(plot_id = plot_id, download_plot_id = download_plot_id, download_data_id = download_data_id)
-}
-
-# Internal function from shiny.semantic which I copied to be able to change the mobile
-# screen size definition to 1400 so that tablet related content is applied the change
-# of moving the sidebar_panel to the top of the main_panel.
-custom_grid_template <- function(default = NULL, mobile = NULL) {
-  if (!("areas" %in% names(default))) {
-    stop(paste(
-      "grid_template() default argument must contain list with `areas` definition.",
-      "See documentation for examples."
-    ))
-  }
-
-  area_names <- unique(as.vector(default$areas))
-  area_tags <- shiny::tagList(shiny.semantic:::list_of_area_tags(area_names))
-  css_grid_template_areas <- shiny.semantic:::data_frame_to_css_grid_template_areas(default$areas)
-
-  css_default <- shiny::tags$style(paste(
-    "#{{ grid_id }} {",
-    shiny.semantic:::grid_container_css(
-      css_grid_template_areas, default$rows_height,
-      default$cols_width
-    ), "}"
-  ))
-
-  css_mobile <- NULL
-  if (!is.null(mobile)) {
-    if (!("areas" %in% names(mobile))) {
-      stop(paste(
-        "grid_template() mobile argument must contain list with `areas` definition.",
-        "See documentation for examples."
-      ))
-    }
-    css_grid_template_areas <- shiny.semantic:::data_frame_to_css_grid_template_areas(mobile$areas)
-
-    css_mobile <- shiny::tags$style(paste(
-      "@media screen and (max-width: 1400px) {",
-      "#{{ grid_id }} {", shiny.semantic:::grid_container_css(
-        css_grid_template_areas,
-        mobile$rows_height, mobile$cols_width
-      ), "}",
-      "}"
-    ))
-  }
-
-  template <- htmltools::renderTags(
-    shiny::tagList(css_default, css_mobile, shiny::tags$div(
-      id = "{{ grid_id }}",
-      area_tags
-    ))
-  )
-  return(list(template = template$html, area_names = area_names))
 }
