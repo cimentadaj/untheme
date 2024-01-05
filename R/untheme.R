@@ -140,7 +140,7 @@ plotWithDownloadButtons <- function(input, output, ids, ggplot_obj, file_name, u
 
   output[[ids$download_data_id]] <- shiny::downloadHandler(
     filename = function() paste0(file_name, "_data.csv"),
-    content = function(file) utils::write.csv(reactive_ggplot_obj()$gg$data, file)
+    content = function(file) utils::write.csv(reactive_ggplot_obj()$gg$data, file, row.names = FALSE)
   )
 }
 
