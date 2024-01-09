@@ -400,60 +400,61 @@ svg path{
     /* fill:$dp-light; */
 	fill: #ffffff;
 }
+
 /* @include breakpoint(xxs) */
-@media only screen and (max-width: 0){
-	.row__inner {
-		max-width: calc(100vw - 1rem);
-		width:calc(100vw - 1rem);
+@media only screen and (max-width: 0) {
+  .row__inner {
+      max-width: calc(100vw - 1rem);
+      width:calc(100vw - 1rem);
 	}
 	.ui-view-wrapper{
-		padding-bottom: 2rem;
-		min-height: calc(100vh - 26.3rem);
+		  padding-bottom: 2rem;
+		  min-height: calc(100vh - 26.3rem);
 	}
 	.row__outer--footer-bar{
-		padding:0 0.5rem 0rem 0.5rem;
+		  padding:0 0.5rem 0rem 0.5rem;
 	}
 	.row__inner--footer-bar{
-		display: flex;
-		margin: 1rem auto;
-		justify-content: space-between;
-		flex-direction: column;
+		  display: flex;
+		  margin: 1rem auto;
+		  justify-content: space-between;
+		  flex-direction: column;
 	}
 	.footer-bar__logo-text{
-		font-size: 12px;
-		line-height: 0.95rem;
-		width: 4rem;
+		  font-size: 12px;
+		  line-height: 0.95rem;
+		  width: 4rem;
 	}
 	.footer-bar__logo-image{
-		width: 30px;
-		height: 30px;
+		  width: 30px;
+		  height: 30px;
 	}
 	.footer-bar__social-links{
-		flex-wrap: wrap;
+		  flex-wrap: wrap;
 	}
 	.footer-bar__social-link-item{
-		font-size: 0.8rem;
-		margin: 0 0.9rem;
+		  font-size: 0.8rem;
+		  margin: 0 0.9rem;
 	}
 	.footer-bar__social-link-item:first-of-type{
-		width:100%;
-		padding-bottom: 1rem;
+		  width:100%;
+		  padding-bottom: 1rem;
 	}
 	.footer-bar__link-item:after{
-		height: 50%;
+		  height: 50%;
 	}
 	.footer-bar__link{
-		font-size: 8px;
-		margin: 0 0.3rem;
+		  font-size: 8px;
+		  margin: 0 0.3rem;
 	}
 }
 /* @include breakpoint(xs) */
 @media screen and (min-width: 400px){
-	.ui-view-wrapper{
-		min-height: calc(100vh - 25.3rem);
-	}
-
+	  .ui-view-wrapper{
+		    min-height: calc(100vh - 25.3rem);
+	  }
 }
+
 /* @include breakpoint(sm) */
 @media screen and (min-width: 525px){
 	.ui-view-wrapper{
@@ -467,8 +468,16 @@ svg path{
 		padding-bottom: 0;
 	}
 }
+
+/* Hiding the button on mobile devices */
+@media only screen and (max-width: 768px) {
+    .footer-bar_button.k-button {
+        display: none !important;
+    }
+}
+
 /* @include breakpoint(md) */
-@media screen and (min-width: 768px){
+@media screen and (min-width: 767px){
 	.row__inner{
 		max-width: calc(100vw - 2rem);
 		width: calc(100vw - 2rem);
