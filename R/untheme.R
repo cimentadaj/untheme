@@ -88,6 +88,7 @@ plotWithDownloadButtonsUI <- function(id, radio_button = NULL, width = "100%") {
       children = shiny::div(
         class = "custom-sidebar",
         radio_button,
+        shiny::tags$div(style = "margin-bottom: 1px;"),
         shiny::div( # Wrap the buttons in a div with display block to stack them
           style = "display: block;",
           shiny::downloadButton(ids$download_plot_id, "Download Plot"),
