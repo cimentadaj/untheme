@@ -80,7 +80,7 @@ fluidUnTheme <- function(...) {
 #' @param width The width of the plotly output. By default, it is 1000px
 #' @return A \code{shiny::sidebarLayout} object containing the plot and download buttons.
 #' @export
-plotWithDownloadButtonsUI <- function(id, radio_button = NULL, width = "100%") {
+plotWithDownloadButtonsUI <- function(id, radio_button = NULL, width = "auto") {
   ids <- generate_ids(id)
 
   layout <- custom_sidebar_layout(
