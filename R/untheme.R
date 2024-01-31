@@ -112,6 +112,38 @@ plotWithDownloadButtonsUI <- function(id, radio_button = NULL, width = "auto") {
   layout
 }
 
+
+#' Create a custom sidebar layout, mobile responsive
+#'
+#' This custom sidebar panel is responsive: when below 1400px the sidebar
+#' will be moved to be on top of the plot.
+#'
+#' @param sidebar A list with UI components for the sidebar
+#' @param main_panel A div with UI components for the main panel
+#'
+#' @export
+sidebar_layout_responsive <- function(sidebar, main_panel) {
+  layout <- custom_sidebar_layout(
+    list(
+      children = shiny::div(
+        class = "custom-sidebar",
+        sidebar
+      ),
+      width = "2"
+    ),
+    list(
+      children = shiny::div(
+        class = "custom-main-panel",
+        style = "width: 4fr;",
+        main_panel
+      ),
+      width = "4"
+    )
+  )
+
+  layout
+}
+
 #' Create a server component for rendering and downloading a plot
 #'
 #' @param input A list of input values from the Shiny UI.
@@ -161,4 +193,28 @@ generate_ids <- function(id) {
   download_data_id <- paste0("downloaddata_", id)
 
   list(plot_id = plot_id, download_plot_id = download_plot_id, download_data_id = download_data_id)
+}
+
+#' Detect Appropriate Font Size Based on Screen Width
+#'
+#' This function determines the appropriate font sizes for titles and general text
+#' based on the provided screen width. It categorizes devices into three types:
+#' screen (large screens), tablet, and mobile. It returns a list containing the
+#' title font size, general font size, and the device type.
+#'
+#' @param screen_width Numeric value representing the width of the screen in pixels.
+#'
+#' @return A list containing three elements: `title` (the font size for titles),
+#' `font` (the font size for general text), and `type` (a string indicating the
+#' device type: "screen", "tablet", or "mobile").
+#'
+#' @export
+detect_font_size <- function(screen_width) {
+  if (screen_width > 1200) {
+    return(list(title = 15, font = 13, type = "screen"))
+  } else if (screen_width <= 1200 && screen_width > 768) {
+    return(list(title = 12, font = 12, type = "tablet"))
+  } else {
+    return(list(title = 7, font = 11, type = "mobile"))
+  }
 }
