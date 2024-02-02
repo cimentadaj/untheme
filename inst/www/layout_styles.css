@@ -25,6 +25,11 @@
   .content {
     max-width: 100%;
     min-width: 100%;
-    margin-bottom: 350px; /* Increase this value as needed */
+    margin-bottom: 0px; /* Increase this value as needed */
   }
+  .row__outer--footer-bar {
+      margin-top: 95% !important;
+  }
+
+
 }
