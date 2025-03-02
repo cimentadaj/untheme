@@ -78,9 +78,10 @@ fluidUnTheme <- function(...) {
 #' @param id A unique identifier for the UI component.
 #' @param radio_button A radio button widget to be placed in a sidebar panel.
 #' @param width The width of the plotly output. By default, it is 1000px
+#' @param i18n An i18n object to be used for the plot and download buttons.
 #' @return A \code{shiny::sidebarLayout} object containing the plot and download buttons.
 #' @export
-plotWithDownloadButtonsUI <- function(id, radio_button = NULL, width = "auto") {
+plotWithDownloadButtonsUI <- function(id, radio_button = NULL, width = "auto", i18n = NULL) {
   ids <- generate_ids(id)
 
   layout <- custom_sidebar_layout(
@@ -91,9 +92,9 @@ plotWithDownloadButtonsUI <- function(id, radio_button = NULL, width = "auto") {
         shiny::tags$div(style = "margin-bottom: 1px;"),
         shiny::div( # Wrap the buttons in a div with display block to stack them
           style = "display: block;",
-          shiny::downloadButton(ids$download_plot_id, "Download Plot"),
+          shiny::downloadButton(ids$download_plot_id, label = i18n$translate("Download Plot")),
           shiny::br(), # Add a break line to ensure the buttons stack
-          shiny::downloadButton(ids$download_data_id, "Download Data")
+          shiny::downloadButton(ids$download_data_id, label = i18n$translate("Download Data"))
         )
       ),
       width = "1"
