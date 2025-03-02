@@ -21,8 +21,14 @@
               />
             </svg>
           </span>
-          <span class="welcome__text">Welcome to the United Nations</span>
+          <span class="welcome__text"><span class="i18n" data-key="Welcome to the United Nations">Welcome to the United Nations</span></span>
         </a>
+        <div class="language-switcher">
+          <select id="selected_language" class="shiny-input-select language-select">
+            <option value="en" lang="en" selected>English</option>
+            <option value="fr" lang="fr">Français</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
@@ -54,10 +60,9 @@
         <div class="logo__text-wrapper">
           <div class="logo__sub-text-wrapper">
             <!-- <h3 class="logo__sub-text--department">Department of Economic and Social Affairs</h3> -->
-            <h3 class="logo__sub-text--department">Data Portal</h3>
+            <h3 class="logo__sub-text--department"><span class="i18n", data-key="Data Portal">Data Portal</span></h3>
             <h3 class="logo__sub-text--department-name">
-              <a href="https://www.un.org/development/desa/pd/" target="_blank"
-                >Population Division</a
+              <a href="https://www.un.org/development/desa/pd/" target="_blank"> <span class="i18n", data-key="Population Division">Population Division</span></a
               >
             </h3>
           </div>
