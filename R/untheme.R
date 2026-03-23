@@ -11,7 +11,7 @@ create_field_set <- function(icon_name, label_text, input_id, input_choices, inp
   if (numeric_input) {
     input_widget <- shiny.semantic::numeric_input(input_id, NULL, value = input_selected)
   } else {
-    input_widget <- shiny.semantic::selectInput(input_id, NULL, choices = input_choices, selected = input_selected)
+    input_widget <- shiny.semantic::search_selection_choices(input_id, input_choices, value = input_selected)
   }
 
   shiny::div(
